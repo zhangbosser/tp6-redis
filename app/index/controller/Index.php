@@ -1,7 +1,9 @@
 <?php
+
 namespace app\index\controller;
 
 use app\BaseController;
+use think\cache\driver\Redis;
 
 class Index extends BaseController
 {
@@ -15,7 +17,13 @@ class Index extends BaseController
         return 'hello,' . $name;
     }
 
-    public function Php(){
-        return 'Php,';
+
+    public function backStageRedis()
+    {
+        dump('backStageRedis');
+        $redis = new \Redis();
+        $redis->connect('127.0.0.1', 6379);
+        $redis->rpush('goods_list', 1);
+        dump($redis);
     }
 }
