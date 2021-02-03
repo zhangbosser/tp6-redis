@@ -23,7 +23,19 @@ class Index extends BaseController
         dump('backStageRedis');
         $redis = new \Redis();
         $redis->connect('127.0.0.1', 6379);
-        $redis->rpush('goods_list', 1);
+        $good_count = 20;
+        for ($i = 1; $good_count <= 20; $i++) {
+            $redis->rpush("goods_list_{$i}", 1);
+        }
+
         dump($redis);
+    }
+
+    /**
+     * 抢购
+     */
+    public function rushToPurchase()
+    {
+
     }
 }
