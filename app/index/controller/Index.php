@@ -3,6 +3,7 @@
 namespace app\index\controller;
 
 use app\BaseController;
+use League\Flysystem\Filesystem;
 use think\cache\driver\Redis;
 
 class Index extends BaseController
@@ -37,5 +38,15 @@ class Index extends BaseController
     public function rushToPurchase()
     {
 
+    }
+
+    /**
+     * 七牛云上传文件
+     */
+    public function qiNiuTest()
+    {
+        $file = request()->file('file');
+        $saveName = \think\facade\Filesystem::disk('qiniu')->putFile('data', $file);
+        echo $saveName;
     }
 }
